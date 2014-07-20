@@ -1,0 +1,9 @@
+{
+  "name": "proto-sh-ui",
+  "description": "prototype of a smart home web UI built with angularjs",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x"
+  }
+}

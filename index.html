@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sensors status</title>
+  
+
+  <script src="lib/angular/angular.js"></script>
+  <script>
+    angular.module('myModule',[])
+        .controller('myController',['$scope',function ($scope) {
+            $scope.sensors=[ {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
+				{type:'door', name:'door sensor', state: 'on', alarm: 'no' },
+				{type:'temperature', name:'temperature', state: 'on', alarm: 'no' }];
+        }]);
+  </script>
+
+  
+</head>
+<body ng-app="myModule" ng-controller="myController">
+  <table id="sensorsTable">
+    <tr><th>type</th><th>name</th><th>state</th><th>alarm</th></tr>
+    <tr ng-repeat="sensor in sensors">
+      <td>{{sensor.type}}</td>
+      <td>{{sensor.name}}</td>
+      <td>{{sensor.state}}</td>
+      <td>{{sensor.alarm}}</td>
+    </tr>
+  </table>
+</body>
+</html>
