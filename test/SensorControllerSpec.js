@@ -1,27 +1,45 @@
 describe('SensorController', function() {
-    var scope, createController;
+    var scope, createController, mockSensorService;
 
-    beforeEach(module('smartHome'));
-    beforeEach(inject(function ($rootScope, $controller) {
+    beforeEach(function() {
+        mockSensorService = {};
+        module('smartHome', function($provide) {
+            $provide.value('sensorService', mockSensorService);
+        });
+
+        mockSensorService.data = [  
+                            {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
+                            {type:'door', name:'door sensor', state: 'on', alarm: 'no' }];
+
+        mockSensorService.getSensors = function() { return this.data; };
+
+
+    });
+
+    beforeEach(inject(function ($rootScope, $controller, sensorService) {
         scope = $rootScope.$new();
 
         createController = function() {
             return $controller('SensorController', {
-                '$scope': scope
+                '$scope': scope,
+                '$sensorService' : sensorService
             });
         };
     }));
 
-    it('sensors should exist', function() {
+
+    it('sensors should be available when controller initializes', function() {
         var controller = createController();
-        expect(scope.sensors).toBeDefined();
+        expect(scope.sensors).toEqual(mockSensorService.data);
     });
 
     it('refresh should update sensors', function() {
+        var newSensorList = [ {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' } ];
         var controller = createController();
-        scope.sensors = null;
+        mockSensorService.data = newSensorList;
         scope.refresh();
-        expect(scope.sensors).not.toBe(null);
-
+        expect(scope.sensors).toEqual(newSensorList);
     });
+
+
 });
