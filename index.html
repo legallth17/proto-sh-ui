@@ -6,18 +6,22 @@
   
 
   <script src="lib/angular/angular.js"></script>
+  <script src="js/SensorController.js"></script>
   <script>
-    angular.module('myModule',[])
-        .controller('myController',['$scope',function ($scope) {
-            $scope.sensors=[ {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
-				{type:'door', name:'door sensor', state: 'on', alarm: 'no' },
-				{type:'temperature', name:'temperature', state: 'on', alarm: 'no' }];
-        }]);
+    // mock sensorService
+    angular.module('smartHome').factory('sensorService', function() { 
+      return {
+        getSensors: function() {
+          return [  {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
+                    {type:'door', name:'door sensor', state: 'on', alarm: 'no' }];
+        }
+      }
+    });
   </script>
 
   
 </head>
-<body ng-app="myModule" ng-controller="myController">
+<body ng-app="smartHome" ng-controller="SensorController">
   <table id="sensorsTable">
     <tr><th>type</th><th>name</th><th>state</th><th>alarm</th></tr>
     <tr ng-repeat="sensor in sensors">
