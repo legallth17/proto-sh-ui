@@ -1,6 +1,7 @@
 describe('SensorController', function() {
     var scope, createController, mockSensorService;
 
+    // Mock sensorService
     beforeEach(function() {
         mockSensorService = {};
         module('smartHome', function($provide) {
@@ -16,6 +17,7 @@ describe('SensorController', function() {
 
     });
 
+    // createController function
     beforeEach(inject(function ($rootScope, $controller, sensorService) {
         scope = $rootScope.$new();
 
