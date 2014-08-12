@@ -11,9 +11,11 @@
     // mock sensorService
     angular.module('smartHome').factory('sensorService', function() { 
       return {
+        index: 0,
         getSensors: function() {
-          return [  {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
-                    {type:'door', name:'door sensor', state: 'on', alarm: 'no' }];
+          this.index = this.index+1;
+          return [  {type:'motion'+this.index, name:'motion sensor', state: 'on', alarm: 'no' },
+                    {type:'door'+this.index,   name:'door sensor',   state: 'on', alarm: 'no' }];
         }
       }
     });
@@ -31,5 +33,8 @@
       <td>{{sensor.alarm}}</td>
     </tr>
   </table>
+  <button ng-click="refresh()">
+  Refresh
+</button>
 </body>
 </html>
