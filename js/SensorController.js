@@ -1,6 +1,8 @@
 angular.module('smartHome').controller('SensorController', function($scope,sensorService) {
     $scope.refresh = function() {
-        $scope.sensors = sensorService.getSensors();
+         sensorService.getSensors().then(function(sensors) {
+            $scope.sensors = sensors;
+        });
     };
 
     $scope.refresh();

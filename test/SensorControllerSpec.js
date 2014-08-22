@@ -8,12 +8,17 @@ describe('SensorController', function() {
             $provide.value('sensorService', mockSensorService);
         });
 
-        mockSensorService.data = [  
+        inject(function($q) {
+            mockSensorService.data = [  
                             {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' },
                             {type:'door', name:'door sensor', state: 'on', alarm: 'no' }];
 
-        mockSensorService.getSensors = function() { return this.data; };
-
+            mockSensorService.getSensors = function() { 
+                var deferred = $q.defer();
+                deferred.resolve(this.data);
+                return deferred.promise; 
+            };
+        });
 
     });
 
@@ -32,14 +37,17 @@ describe('SensorController', function() {
 
     it('sensors should be available when controller initializes', function() {
         var controller = createController();
+        scope.$apply();
         expect(scope.sensors).toEqual(mockSensorService.data);
     });
 
     it('refresh should update sensors', function() {
         var newSensorList = [ {type:'motion', name:'motion sensor', state: 'on', alarm: 'no' } ];
         var controller = createController();
+        scope.$apply(); // ensure promises are resolved
         mockSensorService.data = newSensorList;
         scope.refresh();
+        scope.$apply(); // ensure promises are resolved
         expect(scope.sensors).toEqual(newSensorList);
     });
 
