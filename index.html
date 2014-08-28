@@ -9,9 +9,10 @@
   <script src="js/App.js"></script>
   <script src="js/SensorController.js"></script>
   <script src="js/LocalSensorService.js"></script>
+  <script src="js/RemoteSensorService.js"></script>
+  <script src="js/SensorService.js"></script>
   <script>
-    angular.module('smartHome').factory('sensorService', ['localSensorService', function(sensorService) { 
-      return sensorService    }]);
+    angular.module('smartHome').config(function(sensorServiceProvider) { sensorServiceProvider.mode = 'local' });
   </script>
 
   
