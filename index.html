@@ -6,19 +6,12 @@
   
 
   <script src="lib/angular/angular.js"></script>
+  <script src="js/App.js"></script>
   <script src="js/SensorController.js"></script>
+  <script src="js/LocalSensorService.js"></script>
   <script>
-    // mock sensorService
-    angular.module('smartHome').factory('sensorService', function() { 
-      return {
-        index: 0,
-        getSensors: function() {
-          this.index = this.index+1;
-          return [  {type:'motion'+this.index, name:'motion sensor', state: 'on', alarm: 'no' },
-                    {type:'door'+this.index,   name:'door sensor',   state: 'on', alarm: 'no' }];
-        }
-      }
-    });
+    angular.module('smartHome').factory('sensorService', ['localSensorService', function(sensorService) { 
+      return sensorService    }]);
   </script>
 
   
