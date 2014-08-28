@@ -1,1 +1,1 @@
-angular.module('smartHome',[]);
+var app = angular.module('smartHome',[]);

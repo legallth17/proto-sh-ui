@@ -10,8 +10,8 @@
   <script src="js/SensorController.js"></script>
   <script src="js/LocalSensorService.js"></script>
   <script>
-    angular.module('smartHome').factory('sensorService', ['localSensorService', function(sensorService) { 
-      return sensorService    }]);
+    // declare a sensorService that uses the local SensorService provider
+    app.factory('sensorService', ['localSensorService', function(sensorService) { return sensorService }]);
   </script>
 
   
