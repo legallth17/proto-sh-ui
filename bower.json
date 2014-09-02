@@ -5,7 +5,14 @@
   "private": true,
   "dependencies": {
     "angular": "1.2.x",
+    "angular-route": "1.2.x",
     "angular-mocks": "1.2.x",
     "bootstrap": "3.1.x"
+  },
+  "devDependencies": {
+    "jasmine": "2.x"
+  },
+  "resolutions": {
+    "angular": "1.2.23"
   }
 }
