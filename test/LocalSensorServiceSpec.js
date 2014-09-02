@@ -12,6 +12,9 @@ describe('LocalSensorService', function() {
         scope = $rootScope.$new();
     }));
 
+    // ensure sensor matchers are defined
+    beforeEach(sensorMatchers);
+
     it('getSensors should return a promise', function() {
         expect(localSensorService.getSensors().then).toBeDefined();
     });
@@ -20,11 +23,7 @@ describe('LocalSensorService', function() {
         var sensors = null;
         localSensorService.getSensors().then(function(s) { sensors = s; });
         scope.$apply(); 
-        expect(sensors).not.toBeNull();
-        expect(sensors.length).toBeGreaterThan(0);
-        // TODO: create a custom matcher
-        // expect(sensors).toBeSensors();
-        jasmine.addMatchers(null);
+        expect(sensors).toBeSensors();
     });
 
 });
