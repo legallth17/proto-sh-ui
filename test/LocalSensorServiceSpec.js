@@ -26,4 +26,15 @@ describe('LocalSensorService', function() {
         expect(sensors).toBeSensors();
     });
 
+    it('getSensors should return a different result for each call', function() {
+        var sensors1 = null;
+        var sensors2 = null;
+        localSensorService.getSensors().then(function(s) { sensors1 = s; });
+        localSensorService.getSensors().then(function(s) { sensors2 = s; });
+        scope.$apply();
+        expect(sensors2).not.toEqual(sensors1);
+
+    });
+
+
 });
