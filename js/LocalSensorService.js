@@ -4,9 +4,14 @@ angular.module('smartHome').factory('localSensorService', ['$q', function($q) {
         getSensors: function() {
           var deferred = $q.defer();
           this.counter = this.counter + 1;
-          var res = [{id:0, type:'test',   name:'test #'+this.counter, state: 'on', alarm: 'no' },
-                     {id:1, type:'motion', name:'motion sensor',       state: 'on', alarm: 'no' },
-                     {id:2, type:'door',   name:'door sensor',         state: 'on', alarm: 'no' }];
+          var res = [{type: 'smoke', name: 'smoke sensor', features: [
+                        {type: 'smoke',       security: true, armed: false, alarm: false },
+                        {type: 'temperature', temperature: 19 }]},
+                     {type: 'motion', name: 'motion sensor', features: [
+                        {type: 'motion',      security: true, armed: false, alarm: false },
+                        {type: 'luminosity',  luminosity: 800 },
+                        {type: 'temperature', temperature: 20 }]}];
+
           deferred.resolve(res);
           return deferred.promise;
         },

@@ -8,11 +8,11 @@
   <script src="lib/angular/angular.js"></script>
   <script src="js/App.js"></script>
   <script src="js/SensorController.js"></script>
-  <script src="js/RemoteSensorService.js"></script>
+  <script src="js/LocalSensorService.js"></script>
   <script src="js/UserController.js"></script>
   <script>
     // declare a sensorService that uses the local SensorService provider
-    app.factory('sensorService', ['remoteSensorService', function(sensorService) { return sensorService }]);
+    app.factory('sensorService', ['localSensorService', function(sensorService) { return sensorService }]);
   </script>
 
   
@@ -27,15 +27,13 @@
   {{message}}  
 </div>
 <body ng-app="smartHome" ng-controller="SensorController">
-  <table id="sensorsTable">
-    <tr><th>type</th><th>name</th><th>state</th><th>alarm</th></tr>
-    <tr ng-repeat="sensor in sensors">
-      <td>{{sensor.type}}</td>
-      <td>{{sensor.name}}</td>
-      <td>{{sensor.state}}</td>
-      <td>{{sensor.alarm}}</td>
-    </tr>
-  </table>
+    <ul ng-repeat="sensor in sensors">
+      <li>{{sensor.name}}
+            <ul ng-repeat="feature in sensor.features">
+                <li>{{feature.type}}</li>
+            </ul>
+      </li>       
+    </ul>
   <button ng-click="refresh()">
   Refresh
 </button>
