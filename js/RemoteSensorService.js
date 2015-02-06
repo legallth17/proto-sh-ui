@@ -1,12 +1,16 @@
-angular.module('smartHome').factory('remoteSensorService', ['$q', function($q) { 
+angular.module('smartHome').factory('remoteSensorService', ['$q', '$http', function($q,$http) { 
       return {
-        index: 0,
         getSensors: function() {
-          var deferred = $q.defer();
-          this.index = this.index+1;
-          var res = [  {type:'motion'+this.index, name:'remote motion sensor', state: 'on', alarm: 'no' },
-                     {type:'door'+this.index,   name:'remote door sensor',   state: 'on', alarm: 'no' }];
-          deferred.resolve(res);
+            var deferred = $q.defer();
+            $http
+                .get('http://localhost:8080/devices')
+                .success(function (data, status, headers, config) {
+                    console.log("GET /devices: "+data);
+                    deferred.resolve(data);
+                })
+                .error(function(data, status, headers, config) {
+                    console.log("GET /devices: "+status);
+                });
           return deferred.promise;
         }
       }

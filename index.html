@@ -8,14 +8,24 @@
   <script src="lib/angular/angular.js"></script>
   <script src="js/App.js"></script>
   <script src="js/SensorController.js"></script>
-  <script src="js/LocalSensorService.js"></script>
+  <script src="js/RemoteSensorService.js"></script>
+  <script src="js/UserController.js"></script>
   <script>
     // declare a sensorService that uses the local SensorService provider
-    app.factory('sensorService', ['localSensorService', function(sensorService) { return sensorService }]);
+    app.factory('sensorService', ['remoteSensorService', function(sensorService) { return sensorService }]);
   </script>
 
   
 </head>
+<div ng-controller="UserController">
+  <span></span>
+  <form ng-submit="submit()">
+    <input ng-model="user.username" type="text" name="user" placeholder="Username" />
+    <input ng-model="user.password" type="password" name="pass" placeholder="Password" />
+    <input type="submit" value="Login" />
+  </form>
+  {{message}}  
+</div>
 <body ng-app="smartHome" ng-controller="SensorController">
   <table id="sensorsTable">
     <tr><th>type</th><th>name</th><th>state</th><th>alarm</th></tr>
@@ -29,5 +39,6 @@
   <button ng-click="refresh()">
   Refresh
 </button>
+
 </body>
 </html>
