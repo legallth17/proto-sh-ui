@@ -17,15 +17,13 @@
   
 </head>
 <body ng-app="smartHome" ng-controller="SensorController">
-  <table id="sensorsTable">
-    <tr><th>type</th><th>name</th><th>state</th><th>alarm</th></tr>
-    <tr ng-repeat="sensor in sensors">
-      <td>{{sensor.type}}</td>
-      <td>{{sensor.name}}</td>
-      <td>{{sensor.state}}</td>
-      <td>{{sensor.alarm}}</td>
-    </tr>
-  </table>
+    <ul ng-repeat="sensor in sensors">
+      <li>{{sensor.name}}
+            <ul ng-repeat="feature in sensor.features">
+                <li>{{feature.type}}</li>
+            </ul>
+      </li>       
+    </ul>
   <button ng-click="refresh()">
   Refresh
 </button>
