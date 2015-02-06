@@ -1,17 +1,29 @@
 angular.module('smartHome').factory('localSensorService', ['$q', function($q) { 
       return {
-        counter: 0,
+        alarm: true,
+
+        randomBoolean: function() {
+            var values = [true, false];
+            var x = Math.floor(Math.random() * values.length );
+            return values[x]; 
+        },
         getSensors: function() {
           var deferred = $q.defer();
-          this.counter = this.counter + 1;
+          // change alarm status at each call
+          this.alarm = !this.alarm;
           var res = [{type: 'smoke', name: 'smoke sensor', features: [
-                        {type: 'smoke',       security: true, armed: false, alarm: false },
+                        {type: 'smoke',       security: true, armed: true, alarm: false },
                         {type: 'temperature', temperature: 19 }]},
-                     {type: 'motion', name: 'motion sensor', features: [
-                        {type: 'motion',      security: true, armed: false, alarm: false },
+                     {type: 'door', name: 'door sensor', features: [
+                        {type: 'door',      security: true, armed: false, alarm: false }]},
+                     {type: 'motion', name: 'motion sensor garage', features: [
+                        {type: 'motion',      security: true, armed: true, alarm: !this.alarm },
+                        {type: 'luminosity',  luminosity: 650 },
+                        {type: 'temperature', temperature: 18 }]},
+                     {type: 'motion', name: 'motion sensor living', features: [
+                        {type: 'motion',      security: true, armed: true, alarm: this.alarm },
                         {type: 'luminosity',  luminosity: 800 },
                         {type: 'temperature', temperature: 20 }]}];
-
           deferred.resolve(res);
           return deferred.promise;
         },

@@ -16,8 +16,7 @@
                             result.pass = (
                                 e.hasOwnProperty('name') &&
                                 e.hasOwnProperty('type') &&
-                                e.hasOwnProperty('state') &&
-                                e.hasOwnProperty('alarm') );
+                                e.hasOwnProperty('features'));
                         }
                         if (result.pass) {
                             result.message = actual + ' is a list of sensors';
