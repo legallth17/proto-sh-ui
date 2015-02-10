@@ -2,8 +2,11 @@
         jasmine.addMatchers({ toBeSensors: function() {
             return {
                 compare: function(actual) {
-                    console.log(actual);
                     var result = {};
+                    if (actual== null) {
+                        result.message = 'sensors list is null';
+                        return result;
+                    }
                     if (actual.length == 0) {
                         // empty array
                         result.pass = true;
@@ -16,8 +19,7 @@
                             result.pass = (
                                 e.hasOwnProperty('name') &&
                                 e.hasOwnProperty('type') &&
-                                e.hasOwnProperty('state') &&
-                                e.hasOwnProperty('alarm') );
+                                e.hasOwnProperty('features'));
                         }
                         if (result.pass) {
                             result.message = actual + ' is a list of sensors';
