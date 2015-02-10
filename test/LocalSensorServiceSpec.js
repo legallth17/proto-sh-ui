@@ -36,18 +36,6 @@ describe('LocalSensorService', function() {
         expect(sensors2).not.toEqual(sensors1);
 
     });
-/*
-    it('testAlarm should trigger alarm', function() {
-        var sensors = null;
-        localSensorService.getSensors().then(function(s) { sensors = s; });
-        scope.$apply();
-        localSensorService.testAlarm( 1 );
-        localSensorService.testAlarm( 2 );
-        localSensorService.getSensors().then(function(s) { sensors = s; });
-        scope.$apply();
-        expect(sensors[1].alarm).toEqual('yes');
-        expect(sensors[2].alarm).toEqual('yes');
-    });
-*/
 
 });
+

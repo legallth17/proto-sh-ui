@@ -1,12 +1,6 @@
 angular.module('smartHome').factory('localSensorService', ['$q', function($q) { 
       return {
         alarm: true,
-
-        randomBoolean: function() {
-            var values = [true, false];
-            var x = Math.floor(Math.random() * values.length );
-            return values[x]; 
-        },
         getSensors: function() {
           var deferred = $q.defer();
           // change alarm status at each call
