@@ -1,4 +1,4 @@
-angular.module('smartHome').factory('remoteSensorService', ['$q', '$http', function($q,$http) { 
+angular.module('smartHome').factory('sensorService', ['$q', '$http', function($q,$http) { 
       return {
         getSensors: function() {
             var deferred = $q.defer();

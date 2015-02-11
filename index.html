@@ -8,12 +8,7 @@
   <script src="lib/angular/angular.js"></script>
   <script src="js/App.js"></script>
   <script src="js/SensorController.js"></script>
-  <script src="js/RemoteSensorService.js"></script>
-  <script>
-    // declare a sensorService that uses the local SensorService provider
-    app.factory('sensorService', ['remoteSensorService', function(sensorService) { return sensorService }]);
-  </script>
-
+  <script src="js/SensorService.js"></script>
   
 </head>
 <body ng-app="smartHome" ng-controller="SensorController">
