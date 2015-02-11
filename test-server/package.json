@@ -1,0 +1,18 @@
+{
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+    "express": "~3.4.4",
+    "request":"~2.51.0",
+    "express-jwt":"~1.0.0",
+    "jsonwebtoken":"~3.2.2"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
+}
