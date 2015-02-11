@@ -16,11 +16,11 @@ var devices = [{type: 'smoke', name: 'smoke sensor', features: [
                      {type: 'door', name: 'door sensor', features: [
                         {type: 'door',      security: true, armed: false, alarm: false }]},
                      {type: 'motion', name: 'motion sensor garage', features: [
-                        {type: 'motion',      security: true, armed: true, alarm: !this.alarm },
+                        {type: 'motion',      security: true, armed: true, alarm: true },
                         {type: 'luminosity',  luminosity: 650 },
                         {type: 'temperature', temperature: 18 }]},
                      {type: 'motion', name: 'motion sensor living', features: [
-                        {type: 'motion',      security: true, armed: true, alarm: this.alarm },
+                        {type: 'motion',      security: true, armed: true, alarm: true },
                         {type: 'luminosity',  luminosity: 800 },
                         {type: 'temperature', temperature: 20 }]}];
 
@@ -30,6 +30,12 @@ var app = express();
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
 // GET devices
 
