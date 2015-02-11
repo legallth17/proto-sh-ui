@@ -30,7 +30,11 @@
     <ul ng-repeat="sensor in sensors">
       <li>{{sensor.name}}
             <ul ng-repeat="feature in sensor.features">
-                <li>{{feature.type}}</li>
+                <li>{{feature.type}}
+                    <span ng-if="feature.luminosity"> {{feature.luminosity}} lux</span>
+                    <span ng-if="feature.temperature"> {{feature.temperature}} °C</span>
+                    <span ng-if="feature.security"> armed: <input type="checkbox" ng-model="feature.armed"><span ng-if="feature.alarm"> !</span></span>
+                </li>
             </ul>
       </li>       
     </ul>
