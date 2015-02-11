@@ -1,5 +1,5 @@
 describe('RemoteSensorService', function() {
-    var $http, scope, remoteSensorService;
+    var $httpBackend, scope, remoteSensorService;
 
     beforeEach(module('smartHome'));
 
@@ -35,6 +35,7 @@ describe('RemoteSensorService', function() {
     it('getSensors promise should return sensors if success', function() {
         var sensors = null;
         remoteSensorService.getSensors().then(function(s) { sensors = s; });
+        $httpBackend.flush();
         scope.$apply(); 
         expect(sensors).toBeSensors();
     });
