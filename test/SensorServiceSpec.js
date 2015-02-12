@@ -36,7 +36,6 @@ describe('SensorService', function() {
         var sensors = null;
         sensorService.getSensors().then(function(s) { sensors = s; });
         $httpBackend.flush();
-        scope.$apply(); 
         expect(sensors).toBeSensors();
     });
 
